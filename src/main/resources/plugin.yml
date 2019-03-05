@@ -1,0 +1,4 @@
+name: PlayTimeTrackerCloud
+version: ${project.version}
+main: net.snapecraft.playtimetrackercloud.PlayTimeTrackerCloud
+website: https://snapecraft.net
