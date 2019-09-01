@@ -57,12 +57,12 @@ public class Api {
     public static Boolean getExists(UUID uuid) {
 //        System.out.println("getExists");
 //        System.out.println("SELECT " + Config.getTimeColumn() + " FROM " + Config.getDBTable() + " WHERE player='" + uuid.toString() + "';");
-        return executeQuery("SELECT " + Config.getTimeColumn() + " FROM " + Config.getDBTable() + " WHERE player='" + uuid.toString() + "';").length() != 0;
+        return executeQuery("SELECT " + Config.getTimeColumn() + " FROM " + Config.getDBTable() + " WHERE player='" + uuid.toString().replace("-", "") + "';").length() != 0;
     }
 
     public static Long getPlaytime(UUID uuid) {
 //        System.out.println("getPlaytime");
-        String result = executeQuery("SELECT " + Config.getTimeColumn() + " FROM " + Config.getDBTable() + " WHERE player='" + uuid.toString() + "';");
+        String result = executeQuery("SELECT " + Config.getTimeColumn() + " FROM " + Config.getDBTable() + " WHERE player='" + uuid.toString().replace("-", "") + "';");
         if(getExists(uuid)) {
             return Long.parseLong(result);
         } else {
@@ -74,9 +74,9 @@ public class Api {
 //        System.out.println("setPlaytime");
         if(getExists(uuid)) {
 //            System.out.println("UPDATE " + Config.getDBTable() + " SET " + Config.getTimeColumn() + "='" + playtime + "' WHERE player='" + uuid.toString() + "';");
-            executeSQL("UPDATE " + Config.getDBTable() + " SET " + Config.getTimeColumn() + "='" + playtime + "' WHERE player='" + uuid.toString() + "';");
+            executeSQL("UPDATE " + Config.getDBTable() + " SET " + Config.getTimeColumn() + "='" + playtime + "' WHERE player='" + uuid.toString().replace("-", "") + "';");
         } else {
-            executeSQL("INSERT INTO " + Config.getDBTable() + " (player, " + Config.getTimeColumn() + ") VALUES ('" + uuid.toString() + "', '" + playtime + "');");
+            executeSQL("INSERT INTO " + Config.getDBTable() + " (player, " + Config.getTimeColumn() + ") VALUES ('" + uuid.toString().replace("-", "") + "', '" + playtime + "');");
         }
     }
 
